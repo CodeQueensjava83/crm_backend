@@ -1,9 +1,9 @@
-# Jogada Perfeita - Backend
+# CRMfy - Backend
 
 <br />
 
 <div align="center">
-   <img width="512" height="512" src="https://ik.imagekit.io/milenasoliv10/logo_loja.png?updatedAt=1760735635874" title="source: imgur.com" /> 
+   <img width="512" height="512" src="https://ik.imagekit.io/codequeens/crmfy_logo.png?updatedAt=1761154152762" title="source: imgur.com" /> 
 </div>
 
 
@@ -11,10 +11,11 @@
 
 ## 1. Descrição
 
-Loja dedicada aos amantes de jogos de tabuleiro, com ampla variedade de títulos nacionais e importados.
-Compre com facilidade e receba em casa os melhores boardgames para todas as idades e estilos de jogo.
+A CRMfy nasceu para conectar empresas e pessoas de forma inteligente.
+Com tecnologia, dados e IA, transformamos cada interação em uma oportunidade de crescimento.
+Mais que um CRM, somos o elo entre o humano e o digital — o futuro dos relacionamentos.
 
-Entre os principais recursos que uma loja de games oferece, destacam-se:
+Entre os principais recursos que um CRM oferece, destacam-se:
 
 - Criação, edição e exclusão de produtos;
 - Associação de produtos e categorias específicas;
@@ -24,15 +25,13 @@ Entre os principais recursos que uma loja de games oferece, destacam-se:
 
 ## 2. Sobre esta API
 
-A API da Loja de Games foi desenvolvida em Java, utilizando o framework Spring, e segue os princípios da Arquitetura MVC e REST. Ela disponibiliza endpoints para o gerenciamento dos recursos Produto e Categoria, com testes de CRUD (Create, Read, Update e Delete) realizados por meio do Insomnia.
+A API do CRMfy foi desenvolvida em Java, utilizando o framework Spring, e segue os princípios da Arquitetura MVC e REST. Ela disponibiliza endpoints para o gerenciamento dos recursos Cliente, Oportunidades e Usuário, com testes de CRUD (Create, Read, Update e Delete) realizados por meio do Insomnia.
 
 ### 2.1. Principais Funcionalidades
 
 1. Consulta, criação e gerenciamento de categoria para classificar produtos
 2. Criação, edição, listagem e remoção de produtos
 3. Associação de produtos a categorias
-4. Consulta que retorna todos os produtos com preço maior que o valor informado, ordenados em ordem crescente.
-5. Consulta que retorna todos os produtos com preço menor que o valor informado, ordenados em ordem decrescente.
 
 ------
 
@@ -73,7 +72,7 @@ classDiagram
 
 ## 4. Diagrama Entidade-Relacionamento (DER)
 
-O DER (Diagrama Entidade-Relacionamento) do projeto Loja Games representa de forma visual como os dados estão organizados no banco de dados relacional e como as entidades se relacionam entre si.
+O DER (Diagrama Entidade-Relacionamento) do projeto CRM representa de forma visual como os dados estão organizados no banco de dados relacional e como as entidades se relacionam entre si.
 
 <div align="center">
     <img src="https://ik.imagekit.io/milenasoliv10/der.png?updatedAt=1760737795627" title="source: imgur.com" />
@@ -129,12 +128,12 @@ git clone https://github.com/CodeQueensjava83/crm_backend.git
  
 ### 7.2. Executando o projeto
  
-1. Na Guia **Boot Dashboard**, localize o  **Projeto Loja Games**
-2. Selecione o **Projeto Loja Games**
+1. Na Guia **Boot Dashboard**, localize o  **Projeto  crm_backend**
+2. Selecione o **Projeto CRM_Backend**
 3. Clique no botão **Start or Restart** <img src="https://i.imgur.com/wdoZqWP.png" title="source: imgur.com" width="4%"/> para iniciar a aplicação
 4. Caso seja perguntado se você deseja autorizar o acesso ao projeto via rede, clique no botão **Permitir Acesso**
 5. Acompanhe a inicialização do projeto no console do STS
-6. Verifique se o banco de dados `db_lojagames` foi criado corretamente e se as tabelas foram geradas automaticamente.
+6. Verifique se o banco de dados `db_crm` foi criado corretamente e se as tabelas foram geradas automaticamente.
 7. Utilize o [Insomnia](https://insomnia.rest/) para testar os endpoints.
  
 <br />
@@ -161,5 +160,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
  
 <br />
  
-Desenvolvido por [**CodeQueens**](https://github.com/CodeQueensjava83/crm_backend.git)
+Desenvolvido por [**CodeQueens: Carina, Luana,  .Milena, Myriam, Rafaela**](https://github.com/CodeQueensjava83/crm_backend.git)
 Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
