@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_usuarios" )
-public class UsuarioModel {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,10 @@ public class UsuarioModel {
 	@Column(length = 100)
 	@NotBlank(message = "O atributo senha é obrigatório!")
 	private String senha;
+	
+	@Column(length = 100)
+	@NotBlank(message = "O atributo cargo é obrigatório!")
+	private String cargo;
 
 	public Long getId() {
 		return id;
@@ -74,6 +78,13 @@ public class UsuarioModel {
 		this.senha = senha;
 	}
 	
+	public String getCargo() {
+		return cargo;
+	}
+	
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 	
 	
 }
