@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.generation.crm.model.Cliente;
 import com.generation.crm.repository.ClienteRepository;
+
+import jakarta.validation.Valid;
 
 public class ClienteController {
 	
@@ -37,12 +40,13 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Cliente> post(Cliente cliente) {
-		return ResponseEntity.status(201).body(clienteRepository.save(cliente));
+	public ResponseEntity<Cliente> post(@Valid @RequestBody Cliente cliente) {
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(clienteRepository.save(cliente));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Cliente> put(Cliente cliente) {
+	public ResponseEntity<Cliente> put(@Valid @RequestBody Cliente cliente) {
 		return clienteRepository.findById(cliente.getId())
 				.map(resposta -> ResponseEntity.ok().body(clienteRepository.save(cliente)))
 				.orElse(ResponseEntity.notFound().build());
