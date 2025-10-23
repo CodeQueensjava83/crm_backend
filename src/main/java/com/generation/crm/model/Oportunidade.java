@@ -29,7 +29,7 @@ public class Oportunidade {
     private BigDecimal valor;
 
     @NotBlank(message = "O status é obrigatório")
-    private String status;
+    private int status = 1; // 1 - aberta, 2 - fechada, 3 - perdida
     
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -53,8 +53,6 @@ public class Oportunidade {
     public BigDecimal getValor() { return valor; }
     public void setValor(BigDecimal valor) { this.valor = valor; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -67,7 +65,12 @@ public class Oportunidade {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-    
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
     
 }
