@@ -1,11 +1,25 @@
 package com.generation.crm.model;
 
+
+
 public class Cliente {
 	
 	private Long id;
+	
 	private String nome;
+	
 	private String email;
-	private String endereco;
+	
+	private String telefone;
+	
+	private String origem;
+	
+	
+	public Cliente() {
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -24,12 +38,19 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getEndereco() {
-		return endereco;
+	public String getTelefone() {
+		return telefone;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
+	public String getOrigem() {
+		return origem;
+	}
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+	
 	
 	
 }
