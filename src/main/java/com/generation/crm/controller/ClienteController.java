@@ -20,9 +20,9 @@ import com.generation.crm.repository.ClienteRepository;
 
 import jakarta.validation.Valid;
 
-@RestController // 👈 1. ANOTAÇÃO OBRIGATÓRIA
-@RequestMapping("/clientes") // 👈 2. ANOTAÇÃO OBRIGATÓRIA (URI base)
-@CrossOrigin(origins = "*", allowedHeaders = "*") // 👈 3. ANOTAÇÃO OBRIGATÓRIA (Permitir acesso externo)
+@RestController 
+@RequestMapping("/clientes") 
+@CrossOrigin(origins = "*", allowedHeaders = "*") 
 public class ClienteController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class ClienteController {
 	// GET BY ID
 	// Endpoint: GET /clientes/{id}
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> getById(@PathVariable Long id) { // 👈 Usar @PathVariable
+	public ResponseEntity<Cliente> getById(@PathVariable Long id) { 
 		return clienteRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
@@ -55,9 +55,11 @@ public class ClienteController {
 	// Endpoint: POST /clientes
 	@PostMapping
 	public ResponseEntity<Cliente> post(@Valid @RequestBody Cliente cliente) {
-		// Em um cenário real, você adicionaria aqui a validação de email único
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(clienteRepository.save(cliente));
+		if (clienteRepository.findByEmail(cliente.getEmail()).isEmpty()) {
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(clienteRepository.save(cliente));
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
 	// PUT - UPDATE

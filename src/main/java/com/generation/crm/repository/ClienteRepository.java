@@ -8,17 +8,13 @@ import org.springframework.stereotype.Repository; // 👈 Sugestão de anotaçã
 
 import com.generation.crm.model.Cliente;
 
-@Repository // 👈 Recomendado para legibilidade e escaneamento do componente
+@Repository 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	
 	public List<Cliente> findByNomeContainingIgnoreCase(String nome);
 	
-    // MÉTODOS ADICIONAIS RECOMENDADOS:
-    
-    // 1. Busca por e-mail (usando Optional, pois o e-mail é unique)
+   
     public Optional<Cliente> findByEmail(String email);
-    
-    // 2. Busca por e-mail, ignorando maiúsculas/minúsculas
-    public Optional<Cliente> findByEmailIgnoreCase(String email);
+   
 
 }

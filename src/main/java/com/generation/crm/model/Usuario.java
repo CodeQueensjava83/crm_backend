@@ -1,10 +1,16 @@
 package com.generation.crm.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -37,6 +43,10 @@ public class Usuario {
 	@Column(length = 100)
 	@NotBlank(message = "O atributo cargo é obrigatório!")
 	private String cargo;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<Oportunidade> oportunidades;
 
 	public Long getId() {
 		return id;
@@ -85,6 +95,15 @@ public class Usuario {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+
+	public List<Oportunidade> getOportunidades() {
+		return oportunidades;
+	}
+
+	public void setOportunidades(List<Oportunidade> oportunidades) {
+		this.oportunidades = oportunidades;
+	}
+	
 	
 	
 }
