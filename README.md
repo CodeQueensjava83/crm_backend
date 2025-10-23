@@ -17,9 +17,10 @@ Mais que um CRM, somos o elo entre o humano e o digital — o futuro dos relacio
 
 Entre os principais recursos que um CRM oferece, destacam-se:
 
-- Criação, edição e exclusão de produtos;
-- Associação de produtos e categorias específicas;
-- Visualização de produtos por categoria.
+- Usuário: representa vendedores e gestores que utilizam o sistema.
+- Cliente: centraliza dados de pessoas e empresas.
+- Oportunidade: registra negociações em andamento, com valor, prazo e status.
+- Arquitetura pensada para simplicidade e eficiência.
 
 ------
 
@@ -29,9 +30,9 @@ A API do CRMfy foi desenvolvida em Java, utilizando o framework Spring, e segue 
 
 ### 2.1. Principais Funcionalidades
 
-1. Consulta, criação e gerenciamento de categoria para classificar produtos
-2. Criação, edição, listagem e remoção de produtos
-3. Associação de produtos a categorias
+1 - Organizar informações de clientes e negociações.
+2 - Gerenciar oportunidades no funil de vendas, com acompanhamento dos status das propostas.
+3 - Potencializar o atendimento e o fechamento de negócios.
 
 ------
 
@@ -45,26 +46,31 @@ Esse diagrama ajuda a planejar e entender a arquitetura do sistema, mostrando co
 classDiagram
     direction LR
 
-    class tb_categorias {
-        <<Entity>>
+ class TbUsuarios {
         +BIGINT id
-        +VARCHAR(255) tipo
+        +VARCHAR(100) cargo
+        +VARCHAR(1000) foto
+        +VARCHAR(100) nome
+        +VARCHAR(100) senha
+        +VARCHAR(100) usuario
     }
-
-    class tb_produtos {
-        <<Entity>>
+    class TbOportunidades {
         +BIGINT id
-        +DOUBLE avaliacao
-        +VARCHAR(1000) descricao
-        +VARCHAR(255) foto
-        +VARCHAR(100) marca
-        +VARCHAR(100) nome_jogo
-        +INT numero_jogadores
-        +DECIMAL(38,2) preco
-        +BIGINT categoria_id
+        +VARCHAR(255) descricao
+        +VARCHAR(255) status
+        +DECIMAL(38,2) valor
+        +BIGINT cliente_id
+        +BIGINT usuario_id
     }
-
-    tb_categorias "1" --> "N" tb_produtos : contém
+    class TbClientes {
+        +BIGINT id
+        +VARCHAR(255) email
+        +VARCHAR(100) nome
+        +VARCHAR(255) origem
+        +VARCHAR(255) telefone
+    }
+    TbUsuarios "1" --> "0.." TbOportunidades : possui
+    TbClientes "1" --> "0.." TbOportunidades : possui
 
 ```
 
@@ -75,7 +81,7 @@ classDiagram
 O DER (Diagrama Entidade-Relacionamento) do projeto CRM representa de forma visual como os dados estão organizados no banco de dados relacional e como as entidades se relacionam entre si.
 
 <div align="center">
-    <img src="https://ik.imagekit.io/milenasoliv10/der.png?updatedAt=1760737795627" title="source: imgur.com" />
+    <img src="https://ik.imagekit.io/codequeens/der1.png?updatedAt=1761239541402" title="source: imgur.com" />
 </div>
 
 ------
@@ -160,5 +166,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
  
 <br />
  
-Desenvolvido por [**CodeQueens: Carina, Luana,  .Milena, Myriam, Rafaela**](https://github.com/CodeQueensjava83/crm_backend.git)
-Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
+Desenvolvido por [**CodeQueens: Carina, Luana, Maria, Milena, Myriam, Rafaela**](https://github.com/CodeQueensjava83/crm_backend.git)
+Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!bra uma issue!
