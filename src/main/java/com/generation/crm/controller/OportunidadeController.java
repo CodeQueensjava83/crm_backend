@@ -63,11 +63,14 @@ public class OportunidadeController {
     	if (clienteRepository.existsById(oportunidade.getCliente().getId()) && 
     			usuarioRepository.existsById(oportunidade.getUsuario().getId())) {
     		
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(oportunidadeRepository.save(oportunidade));
-    }
-    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-    		"Cliente ou Usuário ID's inválidos para o relacionamento");
+    		Oportunidade novaOportunidade = oportunidadeRepository.save(oportunidade);
+
+            return oportunidadeRepository.findById(novaOportunidade.getId())
+                .map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+                .orElse(ResponseEntity.status(HttpStatus.CREATED).body(novaOportunidade)); // fallback
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
+            "Cliente ou Usuário ID's inválidos para o relacionamento.");
 }
     
     // UPDATE -> atualizar existente
