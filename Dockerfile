@@ -12,8 +12,18 @@ RUN mvn -q -e -B package -DskipTests
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar app.jar
+# Cria o diretório de configuração externo
+RUN mkdir -p /app/config
 
+# Copia o JAR gerado
+COPY --from=build /app/target/crm_backend-0.0.1-SNAPSHOT.jar app.jar
+
+
+# Expõe a porta do Spring Boot
 EXPOSE 8080
 
+# Permite que o Spring carregue configs externas em /app/config
+ENV SPRING_CONFIG_LOCATION=classpath:/,file:/app/config/
+
+# Comando de inicialização
 ENTRYPOINT ["java", "-jar", "app.jar"]
