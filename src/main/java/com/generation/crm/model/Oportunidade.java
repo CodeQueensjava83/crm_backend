@@ -29,17 +29,17 @@ public class Oportunidade {
     @NotNull(message = "O valor não pode ser nulo")
     private BigDecimal valor;
 
-    @NotBlank(message = "O status é obrigatório")
+    @NotNull(message = "O status é obrigatório")
     private int status = 1; // 1 - aberta, 2 - fechada, 3 - perdida
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnoreProperties("oportunidades")
+    @JsonIgnoreProperties("oportunidade")
     private Usuario usuario;
     
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    @JsonIgnoreProperties("oportunidades")
+    @JsonIgnoreProperties("oportunidade")
     private Cliente cliente;
     
     // Exemplo: aberta, fechada e perdida

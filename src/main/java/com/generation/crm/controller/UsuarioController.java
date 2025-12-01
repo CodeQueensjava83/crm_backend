@@ -45,7 +45,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuarioRepository.findAllByUsuarioContainingIgnoreCase(usuario));
 	}
 	
-	@PostMapping
+	@PostMapping("/cadastrar")
     public ResponseEntity<Usuario> create(@Valid @RequestBody Usuario user) {
         if (usuarioRepository.findByUsuario(user.getUsuario()).isEmpty()) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(user));
@@ -53,7 +53,7 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 	
-    @PutMapping
+    @PutMapping("/atualizar")
     public ResponseEntity<Usuario> update(@Valid @RequestBody Usuario usuario) {
         return usuarioRepository.findById(usuario.getId())
                 .map(resposta -> {

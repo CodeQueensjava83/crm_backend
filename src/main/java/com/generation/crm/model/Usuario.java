@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,9 +48,9 @@ public class Usuario {
 	@NotBlank(message = "O atributo cargo é obrigatório!")
 	private String cargo;
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Oportunidade> oportunidades;
+	private List<Oportunidade> oportunidade;
 
 	public Long getId() {
 		return id;
@@ -99,12 +100,12 @@ public class Usuario {
 		this.cargo = cargo;
 	}
 
-	public List<Oportunidade> getOportunidades() {
-		return oportunidades;
+	public List<Oportunidade> getOportunidade() {
+		return oportunidade;
 	}
 
-	public void setOportunidades(List<Oportunidade> oportunidades) {
-		this.oportunidades = oportunidades;
+	public void setOportunidade(List<Oportunidade> oportunidade) {
+		this.oportunidade = oportunidade;
 	}
 	
 	

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,14 +38,9 @@ public class Cliente {
 	@NotBlank(message = "A origem é obrigatória")
 	private String origem;
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("cliente")
-	private List<Oportunidade> oportunidades;
-	
-	public Cliente() {
-		
-	}
-	
+	private List<Oportunidade> oportunidade;
 	
 	public Long getId() {
 		return id;
@@ -77,16 +73,12 @@ public class Cliente {
 		this.origem = origem;
 	}
 
-
-	public List<Oportunidade> getOportunidades() {
-		return oportunidades;
+	public List<Oportunidade> getOportunidade() {
+		return oportunidade;
 	}
 
-
-	public void setOportunidades(List<Oportunidade> oportunidades) {
-		this.oportunidades = oportunidades;
+	public void setOportunidade(List<Oportunidade> oportunidade) {
+		this.oportunidade = oportunidade;
 	}
-	
-	
 	
 }

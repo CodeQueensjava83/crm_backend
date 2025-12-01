@@ -44,7 +44,7 @@ public class OportunidadeController {
         return ResponseEntity.ok(oportunidadeRepository.findAll());
     }
 
-    // READ -> buscar por ID
+    // READ -> buscar  ID
     @GetMapping("/{id}")
     public ResponseEntity<Oportunidade> getById(@PathVariable Long id) {
         Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
@@ -57,7 +57,7 @@ public class OportunidadeController {
     	return ResponseEntity.ok(oportunidadeRepository.findAllByDescricaoContainingIgnoreCase(descricao));
     }
 
-    // CREATE -> criar nova
+    // CREATE -> criar nova oport
     @PostMapping
     public ResponseEntity<Oportunidade> post(@Valid @RequestBody Oportunidade oportunidade) {
     	if (clienteRepository.existsById(oportunidade.getCliente().getId()) && 
