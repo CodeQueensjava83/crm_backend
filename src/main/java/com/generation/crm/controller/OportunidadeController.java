@@ -70,6 +70,9 @@ public class OportunidadeController {
         if (cliente.isEmpty()) return ResponseEntity.badRequest().body("Cliente não encontrado");
         if (usuario.isEmpty()) return ResponseEntity.badRequest().body("Usuário não encontrado");
 
+        // Garantir que status inicial seja 1 (Aberta)
+        oportunidade.setStatus(1);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(oportunidadeRepository.save(oportunidade));
     }
 
@@ -104,6 +107,7 @@ public class OportunidadeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Fechar oportunidade (status = 2)
     @PutMapping("/fechar/{id}")
     public ResponseEntity<Oportunidade> fechar(@PathVariable Long id) {
         return ResponseEntity.ok(oportunidadeService.fecharOportunidade(id));
