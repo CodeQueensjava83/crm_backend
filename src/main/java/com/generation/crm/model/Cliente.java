@@ -19,66 +19,45 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "tb_clientes")
 public class Cliente {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotBlank(message = "O nome é obrigatório")
-	@Size(min = 5, max = 100)
-	private String nome;
-	
-	@NotBlank(message = "O email é obrigatório")
-	@Email(message = "O email deve ser válido")
-	private String email;
-	
-	
-	private String telefone;
-	
-	@NotBlank(message = "A origem é obrigatória")
-	private String origem;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("cliente")
-	private List<Oportunidade> oportunidade;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-	public String getOrigem() {
-		return origem;
-	}
-	public void setOrigem(String origem) {
-		this.origem = origem;
-	}
 
-	public List<Oportunidade> getOportunidade() {
-		return oportunidade;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setOportunidade(List<Oportunidade> oportunidade) {
-		this.oportunidade = oportunidade;
-	}
-	
+    @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 5, max = 100)
+    private String nome;
+
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "O email deve ser válido")
+    private String email;
+
+    private String telefone;
+
+    @NotBlank(message = "A origem é obrigatória")
+    private String origem;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("cliente") 
+    private List<Oportunidade> oportunidades;
+
+    // GETTERS & SETTERS
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+
+    public String getOrigem() { return origem; }
+    public void setOrigem(String origem) { this.origem = origem; }
+
+    public List<Oportunidade> getOportunidades() { return oportunidades; }
+    public void setOportunidades(List<Oportunidade> oportunidades) { this.oportunidades = oportunidades; }
 }
+

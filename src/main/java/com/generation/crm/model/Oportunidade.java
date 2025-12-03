@@ -30,21 +30,19 @@ public class Oportunidade {
     private BigDecimal valor;
 
     @NotNull(message = "O status é obrigatório")
-    private int status = 1; // 1 - aberta, 2 - fechada, 3 - perdida
-    
+    private int status = 1; // 1 = aberta, 2 = fechada, 3 = perdida
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnoreProperties("oportunidade")
+    @JsonIgnoreProperties("oportunidades")
     private Usuario usuario;
-    
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    @JsonIgnoreProperties("oportunidade")
-    private Cliente cliente;
-    
-    // Exemplo: aberta, fechada e perdida
 
-    // Getters e Setters
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("oportunidades")
+    private Cliente cliente;
+
+    // GETTERS/SETTERS
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -54,24 +52,12 @@ public class Oportunidade {
     public BigDecimal getValor() { return valor; }
     public void setValor(BigDecimal valor) { this.valor = valor; }
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
-    
+    public int getStatus() { return status; }
+    public void setStatus(int status) { this.status = status; }
+
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public Cliente getCliente() { return cliente; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
 }
